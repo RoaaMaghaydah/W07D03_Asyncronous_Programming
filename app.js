@@ -75,5 +75,25 @@ const copyFile = (fileName) => {
   };
   createPost(post);
   
+
+  const newPost = JSON.stringify({
+    id: 1,
+    title: "Updated Title",
+    body: "Updated body",
+    userId: 1,
+  });
   
+  const updatePost = (id, data) => {
+    axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`,data)
+    .then((response) => {
+        console.log(response.data);
+      })
+      // in `.catch()` we add the code to handel the error
+      .catch((err) => {
+        throw err;
+      });
+  };
+  
+  
+  updatePost(1, newPost);
 
