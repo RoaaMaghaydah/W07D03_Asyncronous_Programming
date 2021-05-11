@@ -64,6 +64,16 @@ const copyFile = (fileName) => {
   });
 
   const createPost = (user) => {
-   
+    axios.post(`https://jsonplaceholder.typicode.com/posts`,user)
+    .then((response) => {
+        console.log(response.data);
+      })
+      // in `.catch()` we add the code to handel the error
+      .catch((err) => {
+        throw err;
+      });
   };
+  createPost(post);
   
+  
+
