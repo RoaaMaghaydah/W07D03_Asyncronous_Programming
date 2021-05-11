@@ -106,3 +106,14 @@ axios.get('https://jsonplaceholder.typicode.com/posts')
   };
 //getUsers();
 
+const saveUsers = () => {
+    axios.get('https://jsonplaceholder.typicode.com/posts')
+    .then((response)=>{        
+        fs.appendFile("users.txt", response.data, (err) => {
+            if (err) throw err;
+            console.log("done");
+        });      
+  })
+  };
+
+saveUsers();
