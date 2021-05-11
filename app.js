@@ -98,13 +98,12 @@ const updatePost = (id, data) => {
 
 console.log('________________________________________________')
 
-const getUsers = () => {
-axios.get('https://jsonplaceholder.typicode.com/posts')
-  .then((response)=>{
+const getUsers = async() => {
+const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
       console.log (response.data);
-})
+
   };
-//getUsers();
+getUsers();
 
 const saveUsers = () => {
     axios.get('https://jsonplaceholder.typicode.com/posts')
@@ -116,4 +115,4 @@ const saveUsers = () => {
   })
   };
 
-saveUsers();
+//saveUsers();
