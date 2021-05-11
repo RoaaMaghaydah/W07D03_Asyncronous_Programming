@@ -60,7 +60,7 @@ const copyFile = (fileName) => {
 const post = JSON.stringify({
     title: "JavaScript Basics",
     body: "This post contains information about javaScript ",
-    
+
     userId: 1,
 });
 
@@ -98,21 +98,30 @@ const updatePost = (id, data) => {
 
 console.log('________________________________________________')
 
-const getUsers = async() => {
-const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
-      console.log (response.data);
+const getUsers = async () => {
+    try {
+        const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
+        console.log(response.data)
+    }
+    catch (err) {
+        throw err;
+    }
+};
+//getUsers();
 
-  };
-getUsers();
+const saveUsers = async () => {
+  
+    const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
+    let myArray= response.data;
+    fs.writeFile("users.txt", JSON.stringify(myArray[0]), (err) => {
+        if (err) throw err;
+    }); 
+   for(let i=1; i<myArray.length;i++){
 
-const saveUsers = () => {
-    axios.get('https://jsonplaceholder.typicode.com/posts')
-    .then((response)=>{        
-        fs.appendFile("users.txt", response.data, (err) => {
+        fs.appendFile("users.txt", `      ${JSON.stringify(myArray[i])}`, (err) => {
             if (err) throw err;
-            console.log("done");
-        });      
-  })
-  };
+        }); 
+    }
+};
 
-//saveUsers();
+saveUsers();
