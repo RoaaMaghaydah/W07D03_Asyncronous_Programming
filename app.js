@@ -51,7 +51,7 @@ const appendToFile = (data) => {
 const copyFile = (fileName) => {
     fs.copyFile('data.txt', 'copy_of_data.txt', (err) => {
         if (err) throw err;
-        console.log('source.txt was copied to destination.txt');
+        console.log('data.txt was copied to copy_of_data.txt');
     });
 };
 
@@ -64,8 +64,8 @@ const post = JSON.stringify({
     userId: 1,
 });
 
-const createPost = (user) => {
-    axios.post(`https://jsonplaceholder.typicode.com/posts`, user)
+const createPost = (post) => {
+    axios.post(`https://jsonplaceholder.typicode.com/posts`, post)
         .then((response) => {
             console.log(response.data);
         })
